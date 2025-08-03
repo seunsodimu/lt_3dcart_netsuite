@@ -8,15 +8,16 @@ RewriteEngine On
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirect all requests to public directory
-RewriteCond %{REQUEST_URI} !^/public/
+# Redirect all requests to public directory (works in any subdirectory)
+RewriteCond %{REQUEST_URI} !public/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /public/$1 [L]
+RewriteRule ^(.*)$ public/$1 [L]
 
-# Handle requests that don't specify a file
-RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /public/ [L]
+# Handle requests for root directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ public/index.php [L]
 
 # Security: Deny access to sensitive files and directories
 <Files "composer.json">

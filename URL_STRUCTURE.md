@@ -70,10 +70,18 @@ https://yourdomain.com/webhook.php
 
 ### Development (Current Setup)
 ```
-http://localhost/laguna_3dcart_netsuite/
-http://localhost/laguna_3dcart_netsuite/status.php
-http://localhost/laguna_3dcart_netsuite/webhook.php
-http://localhost/laguna_3dcart_netsuite/upload.php
+https://myratetool.com/laguna/netsuite/
+https://myratetool.com/laguna/netsuite/status.php
+https://myratetool.com/laguna/netsuite/webhook.php
+https://myratetool.com/laguna/netsuite/upload.php
+```
+
+### Direct Access (If .htaccess Issues)
+```
+https://myratetool.com/laguna/netsuite/public/
+https://myratetool.com/laguna/netsuite/public/status.php
+https://myratetool.com/laguna/netsuite/public/webhook.php
+https://myratetool.com/laguna/netsuite/public/upload.php
 ```
 
 ### Production (Recommended)
@@ -172,6 +180,43 @@ chmod 600 config/credentials.php
 3. **Standard Practice**: Follows modern PHP application conventions
 4. **Easy Deployment**: Simple to configure in production
 5. **Flexibility**: Works with both subdirectory and domain setups
+
+## 🚨 Troubleshooting 403 Errors
+
+### Quick Diagnosis
+1. **Test direct access first**: Try `https://myratetool.com/laguna/netsuite/public/test-direct.php`
+2. **Check debug info**: Try `https://myratetool.com/laguna/netsuite/debug.php`
+3. **Test installation**: Try `https://myratetool.com/laguna/netsuite/test.php`
+
+### Common Solutions
+
+#### Solution 1: Use Direct Public Access
+If .htaccess is causing issues, access files directly:
+- Dashboard: `https://myratetool.com/laguna/netsuite/public/`
+- Status: `https://myratetool.com/laguna/netsuite/public/status.php`
+
+#### Solution 2: Disable .htaccess Temporarily
+```bash
+# Rename .htaccess to disable it
+mv .htaccess .htaccess.disabled
+```
+
+#### Solution 3: Use Simple .htaccess
+```bash
+# Use the simpler version
+mv .htaccess.simple .htaccess
+```
+
+#### Solution 4: Check Apache Configuration
+Ensure these modules are enabled:
+- mod_rewrite
+- mod_headers
+
+### For 3DCart Webhook
+If using direct access, configure webhook as:
+```
+https://myratetool.com/laguna/netsuite/public/webhook.php
+```
 
 ---
 

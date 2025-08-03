@@ -3,10 +3,10 @@
 # Enable URL rewriting
 RewriteEngine On
 
-# Handle requests for the root directory
+# Handle requests for the root directory and missing files
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^$ index.php [L]
+RewriteRule ^(.*)$ index.php [L,QSA]
 
 # Redirect to HTTPS (uncomment for production)
 # RewriteCond %{HTTPS} off
